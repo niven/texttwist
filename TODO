@@ -1,0 +1,35 @@
+* improve the dictionary
+Words not on dictionary.com:
+BICE (is in Wiktionary)
+
+* Time up! notification not showing
+
+* End-of-round isn't very clear, maybe disable the buttons or something
+
+* Feedback option?
+
+* BGU? Highscore dates seem to always be the current date
+
+* Add Spanish? (lots of users from Phillipines)
+ - but first a way to deal with accented characters
+
+Longer term features:
+
+Fancier gfx/animations
+
+Achievements
+- Perfect round (enter no incorrect words, nor repeated words)
+- N, 10N, 100N completed rounds
+- improved your highscore N times
+- finish N rounds in <M seconds per round
+- guess all 'profane' words maybe?
+- mulilingual: score over 2000pts in every language (maybe add other languages first)
+
+Someone wanted to 'compete against a contact', not sure how to do this.
+
+More game modes:
+- Square (4x4 square with letters, get as many words before time runs out (requires actual dictionary in app)
+- 7-letter twist
+
+
+
