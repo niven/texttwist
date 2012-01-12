@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:id="@+id/round_completed"
+		style="@style/ButtonText" android:background="@drawable/letter_small_unguessed"
+		android:textSize="12sp" />
+	<TextView android:id="@+id/bonus_allwords"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		style="@style/ButtonText" android:background="@drawable/guess"
+		android:textSize="14sp" />
+	<TextView android:id="@+id/bonus_noshuffle"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		style="@style/ButtonText" android:background="@drawable/guess"
+		android:textSize="14sp" />
+	<TextView android:id="@+id/bonus_timeleft"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		style="@style/ButtonText" android:background="@drawable/guess"
+		android:textSize="14sp" />
+	<TextView android:id="@+id/total_score" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" style="@style/ButtonText"
+		android:background="@drawable/letter_small" android:textSize="16sp" />
+
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" style="@style/ButtonText"
+		android:background="@drawable/letter_small_unguessed"
+		android:textSize="12sp" android:text="@string/lookup_header" />
+	<ListView android:layout_width="fill_parent"
+		android:layout_height="0dip" android:layout_weight="1" android:id="@+id/lookup_list"></ListView>
+	<Button android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+		android:id="@+id/btn_rnd_complete_done" style="@style/ButtonText"
+		android:background="@drawable/letter" android:onClick="bottomButton" />
+</LinearLayout>

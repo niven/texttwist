@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="choose_language">Language</string>
+	<string name="game_title">TexT TwisT</string>
+	<string name="app_name">TextTwist</string>
+	<string name="score">Score: %d</string>
+	<string name="time_left">%1$02d:%2$02d</string>
+	<string name="check_word">Check Word</string>
+	<string name="new_game">New Game</string>
+	<string name="go_main_menu">Main Menu</string>
+	<string name="game_over">Game Over</string>
+	<string name="start">Start Game</string>
+	<string name="round">Round: %d</string>
+	<string name="word_incorrect">Wrong!</string>
+	<string name="points_plus">+%d</string>
+	<string name="word_already_guessed">Already found</string>
+	<string name="guessed_all_words">All done!</string>
+	<string name="round_over">Time up!</string>
+	<string name="go_next">Start next round</string>
+	<string name="shuffle">Shuffle</string>
+	<string name="about">About</string>
+	<string name="close">Close</string>
+	<string name="credits">Credits:</string>
+	<string name="credit_wordlist_en">English word list\nOfficial Scrabble Players
+		Dictionary (OSPD)
+	</string>
+	<string name="credit_wordlist_nl">Dutch word list\nOpenTaal - www.opentaal.nl
+	</string>
+	<string name="credit_buttons">Button design\nFolkert Jongbloed -
+		http://www.dibbus.com/2011/02/gradient-buttons-for-android/
+	</string>
+	<string name="credit_icon">Icon\nYasunobu Ikeda\'s Icon Generator -
+		icon-generator.net
+	</string>
+	<string name="round_n_over">Round %d Completed</string>
+	<string name="credit_code">Code\nChris Veenboer</string>
+	<string name="credit_testing">Testing\nSharon Appelman</string>
+	<string name="undo">Undo</string>
+	<string-array name="language_array">
+		<item>English</item>
+		<item>Nederlands</item>
+	</string-array>
+	<string name="next_round">Next Round</string>
+	<string name="main_menu">Main Menu</string>
+	<string name="highscores">Highscores</string>
+	<string name="i18n_date_short">MMM d</string>
+	<string name="scoretext">%1$d, %2$s</string>
+	<string name="time_up">Time up!</string>
+	<string name="bonus_allwords">Found all words: +%d</string>
+	<string name="bonus_noshuffle">Not shuffled bonus: +%d</string>
+	<string name="bonus_timeleft">Time left bonus: +%d</string>
+	<string name="total_score">TOTAL SCORE: %d</string>
+	<string name="highscores_for_lang">Highscores for %s</string>
+	<string name="lookup_header">Look up words (launches dictionary.com)</string>
+</resources>

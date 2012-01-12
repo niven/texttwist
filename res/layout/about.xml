@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/icon"/>
+
+
+	<TextView android:text="@string/credits" style="@style/Top.Credit" />
+	<TextView android:text="@string/credit_wordlist_en" style="@style/Top.Credit" />
+	<TextView android:text="@string/credit_wordlist_nl" style="@style/Top.Credit" />
+	<TextView android:text="@string/credit_buttons" style="@style/Top.Credit" />
+	<TextView android:text="@string/credit_icon" style="@style/Top.Credit" />	
+	<TextView android:text="@string/credit_testing" style="@style/Top.Credit" />
+	<TextView android:text="@string/credit_code" style="@style/Top.Credit" />
+
+	<TextView android:layout_width="fill_parent" android:layout_height="10dp" android:layout_weight="2"/>
+	
+	<Button android:id="@+id/btn_close" style="@style/ButtonText"
+		android:background="@drawable/letter" android:text="@string/close"
+		android:textSize="36sp" android:layout_gravity="center_horizontal" />
+</LinearLayout>
+	
