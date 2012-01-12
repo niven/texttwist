@@ -8,7 +8,8 @@ BICE (is in Wiktionary)
 
 * Feedback option?
 
-* BGU? Highscore dates seem to always be the current date
+* BUG? Highscore dates seem to always be the current date
+- Jan 12 Fixed (Date constructor wants milliseconds)
 
 * Add Spanish? (lots of users from Phillipines)
  - but first a way to deal with accented characters
