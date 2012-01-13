@@ -1,0 +1,2 @@
+Set compiler level to Java6 otherwise you will get Eclipse complaining about @Override annotations for interface methods.
+
