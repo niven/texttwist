@@ -1,0 +1,14 @@
+1.0 Initial Version
+
+1.1
+- Bugfix: Stop processing messages when Activity is finishing
+
+2.0
+- Added Highscores
+- Added word lookup
+
+2.1
+- Bugfix: always set default locale
+
+2.2
+- Correctly format dates of highscores
