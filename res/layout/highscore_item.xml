@@ -14,5 +14,15 @@
 			android:layout_height="wrap_content" style="@style/ButtonText"
 			android:textSize="28sp" />
 
+
+		<RelativeLayout android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_gravity="center_vertical">
+
+
+			<TextView android:id="@+id/scoredate" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" style="@style/ButtonText"
+				android:textSize="20sp" android:layout_alignParentRight="true" />
+		</RelativeLayout>
+
 	</LinearLayout>
 </LinearLayout>
