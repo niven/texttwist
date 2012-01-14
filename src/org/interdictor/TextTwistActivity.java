@@ -18,6 +18,7 @@ import org.interdictor.util.Settings;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -59,6 +60,8 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 	static boolean stop = false; // clock updater
 
 	static final int SHOW_ROUNDCOMPLETED_ACTIVITY = 1;
+
+	
 	Handler mainLoop = new Handler() {
 
 		public void handleMessage(Message msg) {
@@ -89,7 +92,18 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		 */
 		private void handleTick(int min, int sec) {
 			if (min > 0 || sec > 0) {
+				// update the clock
 				timeText.setText(getResources().getString(R.string.time_left, min, sec));
+				// update scores
+				if(state.isUpdatingScore) {
+					int scoreDiff = state.targetScore - state.score;
+					state.score += scoreDiff > 10 ? 10 : scoreDiff;
+					scoreText.setText(getResources().getString(R.string.score, state.score));
+					if(state.score ==state.targetScore) { // stop the updating
+						state.isUpdatingScore = false;
+						scoreText.setTextColor(getResources().getColor(R.color.normal_text));
+					}
+				}
 			} else { // round OVER!
 				showFeedback(getResources().getString(R.string.time_up));
 				TextTwistActivity.stop = true;
@@ -313,24 +327,27 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		alphaAnim.setFillEnabled(true);
 		if (state.validWords.contains(state.guess) && !state.alreadyGuessed.contains(state.guess)) {
 			int points = Settings.POINTS_PER_WORD + (Settings.POINTS_PER_LETTER * state.guess.length());
-			state.score += points;
-			scoreText.setText(getResources().getString(R.string.score, state.score));
+			state.targetScore = state.score + points;
+			state.isUpdatingScore = true;
 			Log.print("CORRECT: " + state.guess);
 			state.alreadyGuessed.add(state.guess);
 			if (state.guess.length() == 6) {
 				state.sixLetterWordGuessed = true;
 			}
-
+			scoreText.setTextColor(getResources().getColor(R.color.notification_green));
+			
 			notification.setText(getResources().getString(R.string.points_plus, points));
 			notification.setTextColor(getResources().getColor(R.color.notification_green));
 			updateGuessedWordDisplay(state.guess);
 
 			// go to next round if the player guessed all the words
-			if (state.alreadyGuessed.size() == state.validWords.size()) {
+			if (state.alreadyGuessed.size() == state.validWords.size() || Settings.DEBUG) {
 				stop = true; // so we never also get the timeup trigger
+				state.score = state.targetScore; // make sure we don't lose points
 				tta.getGame().saveRound(state);
 				// wait a little bit so the user can still see his word was ok
 				mainLoop.sendMessageDelayed(mainLoop.obtainMessage(SHOW_ROUNDCOMPLETED_ACTIVITY), 1200);
+				// TODO: make buttons unclickable or something
 			}
 		} else if (state.alreadyGuessed.contains(state.guess)) { // already
 																	// guessed

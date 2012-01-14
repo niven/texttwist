@@ -31,4 +31,8 @@ class Roundstate {
 	public boolean shuffled;
 
 	protected long elapsed;
+
+	public int targetScore; // this is where we are going from score so we can animate counting up points
+
+	public boolean isUpdatingScore = false;
 }
