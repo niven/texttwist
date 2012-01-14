@@ -37,7 +37,7 @@
 	<string name="main_menu">Hoofdmenu</string>
 	<string name="highscores">Topscores</string>
 	<string name="i18n_date_short">d MMM</string>
-	<string name="scoretext">%1$d, %2$s</string>
+	<string name="score_value">%1$,d</string>
 	<string name="time_up">Tijd op!</string>
 	<string name="bonus_allwords">Alle woorden: +%d</string>
 	<string name="bonus_noshuffle">Niet gehusseld: +%d</string>

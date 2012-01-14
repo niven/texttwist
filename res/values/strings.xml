@@ -44,7 +44,7 @@
 	<string name="main_menu">Main Menu</string>
 	<string name="highscores">Highscores</string>
 	<string name="i18n_date_short">MMM d</string>
-	<string name="scoretext">%1$d, %2$s</string>
+	<string name="score_value">%1$,d</string>
 	<string name="time_up">Time up!</string>
 	<string name="bonus_allwords">Found all words: +%d</string>
 	<string name="bonus_noshuffle">Not shuffled bonus: +%d</string>
