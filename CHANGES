@@ -7,8 +7,15 @@
 - Added Highscores
 - Added word lookup
 
-2.1
+2.1.2
 - Bugfix: always set default locale
 
-2.2
+2.1.2
 - Correctly format dates of highscores
+- locale aware highscores thousands seperators
+- highscore layout tweaks
+- Added email feedback button
+- Make the score counter count up to add excitement :)
+- Change dictionary.com lookup to anagrammer since it actually has scrabble words
+
+
