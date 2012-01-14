@@ -35,6 +35,8 @@ public class MainMenuActivity extends Activity implements OnClickListener, OnIte
 		btn.setOnClickListener(this);		
 		btn = (Button) findViewById(R.id.btn_highscores);
 		btn.setOnClickListener(this);
+		btn = (Button) findViewById(R.id.btn_send_feedback);
+		btn.setOnClickListener(this);
 		
 		Spinner spinner = (Spinner) findViewById(R.id.spinner);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.language_array, android.R.layout.simple_spinner_item);
@@ -64,6 +66,12 @@ public class MainMenuActivity extends Activity implements OnClickListener, OnIte
 			intent = new Intent(this, HighscoreActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.btn_send_feedback:
+			final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+			emailIntent.setType("text/plain");
+			emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "TextTwist feedback");
+			emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"texttwist@interdictor.org"});
+			startActivity(Intent.createChooser(emailIntent, "Email:"));
 		}
 
 	}

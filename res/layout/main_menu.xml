@@ -14,19 +14,26 @@
 
 	<Button android:id="@+id/btn_start" style="@style/ButtonText"
 		android:background="@drawable/letter" android:text="@string/start"
-		android:layout_gravity="center_horizontal" />	
-		
+		android:layout_gravity="center_horizontal" />
+
 	<TextView android:layout_width="fill_parent"
 		android:layout_height="10dp" android:layout_weight="2" />
-		
-		<Button android:id="@+id/btn_highscores" style="@style/ButtonText"
+
+	<Button android:id="@+id/btn_highscores" style="@style/ButtonText"
 		android:background="@drawable/letter" android:text="@string/highscores"
 		android:layout_gravity="center_horizontal" />
 
 	<TextView android:layout_width="fill_parent"
 		android:layout_height="10dp" android:layout_weight="2" />
 
-	<Button android:id="@+id/btn_about" style="@style/ButtonText"
-		android:background="@drawable/letter" android:text="@string/about"
-		android:textSize="24sp" android:layout_gravity="center_horizontal" />
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<Button android:id="@+id/btn_about" style="@style/ButtonText"
+			android:background="@drawable/letter" android:text="@string/about"
+			android:textSize="24sp" android:layout_gravity="center_horizontal" />
+
+		<Button android:id="@+id/btn_send_feedback" style="@style/ButtonText"
+			android:background="@drawable/letter" android:text="@string/send_feedback"
+			android:textSize="24sp" android:layout_gravity="center_horizontal" />
+	</LinearLayout>
 </LinearLayout>
