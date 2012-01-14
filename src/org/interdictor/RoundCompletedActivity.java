@@ -5,14 +5,20 @@ import org.interdictor.util.Log;
 import org.interdictor.util.Settings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -77,14 +83,15 @@ public class RoundCompletedActivity extends Activity {
 			roundN.setText(String.format(resources.getString(R.string.round_n_over, tta.getGame().getCurrentRound())));
 		}
 		final ListView lookup = (ListView) findViewById(R.id.lookup_list);
-		lookup.setAdapter(new ArrayAdapter<String>(this, R.layout.lookup_item, R.id.label, lastRound.validWords));
+		// lookup.setAdapter( new ArrayAdapter<String>(this, R.layout.lookup_item, R.id.label, lastRound.validWords));
+		lookup.setAdapter(new WordlistAdapter(R.layout.lookup_item, lastRound));
 		lookup.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				String item = (String) lookup.getAdapter().getItem(position);
-				String target = String.format(Settings.lookupURLs.get( tta.getLocale().getLanguage() ), item);
-				Log.print("Clicked on " +item + "/ " + target);
+				String target = String.format(Settings.lookupURLs.get(tta.getLocale().getLanguage()), item);
+				Log.print("Clicked on " + item + "/ " + target);
 				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(target));
 				startActivity(browserIntent);
 
@@ -101,6 +108,52 @@ public class RoundCompletedActivity extends Activity {
 	public void bottomButton(View v) {
 
 		finish();
+	}
+
+	public class WordlistAdapter extends BaseAdapter implements ListAdapter {
+
+		private Roundstate lastRound;
+		private int wordRow;
+
+		public WordlistAdapter(int lookupItem, Roundstate lastRound) {
+			this.lastRound = lastRound;
+			this.wordRow = lookupItem;
+		}
+
+		@Override
+		public int getCount() {
+			return lastRound.validWords.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return lastRound.validWords.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View row = convertView;
+
+			if (row == null) {
+				row = getLayoutInflater().inflate(wordRow, null, false);
+			}
+			TextView label = (TextView) row.findViewById(R.id.label);
+			String word = lastRound.validWords.get(position);
+			label.setText(word);
+			if (lastRound.alreadyGuessed.contains(word)) {
+				label.setTextColor(getResources().getColor(R.color.word_guessed));
+			} else {
+				label.setTextColor(getResources().getColor(R.color.word_unguessed));
+			}
+
+			return row;
+		}
+
 	}
 
 }
