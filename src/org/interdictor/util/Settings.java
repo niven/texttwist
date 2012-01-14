@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Settings {
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	public static final long ROUND_LENGTH = 2 * (DEBUG ? 10 : 60) * 1000; // 2 minute round
 	public static final int ROUND_LENGTH_PENALTY = 5 * 1000; // 5 sec shorter rounds after the first
