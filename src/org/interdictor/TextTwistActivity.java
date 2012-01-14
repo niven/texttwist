@@ -443,7 +443,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 					msg.arg2 = (int) sec;
 					mainLoop.sendMessage(msg);
 					try {
-						Thread.sleep(300);
+						Thread.sleep(Settings.TICK);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

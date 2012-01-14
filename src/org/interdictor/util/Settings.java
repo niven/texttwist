@@ -14,7 +14,8 @@ public class Settings {
 	public static final int POINT_NO_SHUFFLE = 250;
 	public static final int POINTS_PER_SECOND_LEFT = 5;
 	public static final Map<String, String> lookupURLs = new HashMap<String, String>();
-	
+	public static final long TICK = 50; // milliseconds per event loop update
+
 	static {
 		lookupURLs.put("en", "http://m.dictionary.com/d/?q=%s");
 		lookupURLs.put("nl", "http://www.woorden.org/index.php?woord=%s");
