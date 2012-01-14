@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="choose_language">Taal</string>
-    <string name="check_word">Controleer</string>
-    <string name="new_game">Nieuw Spel</string>
-    <string name="go_main_menu">Hoofdmenu</string>
-    <string name="start">Start Spel</string>
-    <string name="round">Ronde: %d</string>    
-    <string name="word_incorrect">Fout!</string>
-    <string name="word_already_guessed">Al gevonden</string>
-    <string name="guessed_all_words">Alles gevonden!</string>
-    <string name="round_over">Tijd op!</string>
-    <string name="go_next">Volgende ronde</string>
-    <string name="shuffle">Hussel</string>
-    <string name="undo">Wis</string>
+	<string name="check_word">Controleer</string>
+	<string name="new_game">Nieuw Spel</string>
+	<string name="go_main_menu">Hoofdmenu</string>
+	<string name="start">Start Spel</string>
+	<string name="round">Ronde: %d</string>
+	<string name="word_incorrect">Fout!</string>
+	<string name="word_already_guessed">Al gevonden</string>
+	<string name="guessed_all_words">Alles gevonden!</string>
+	<string name="round_over">Tijd op!</string>
+	<string name="go_next">Volgende ronde</string>
+	<string name="shuffle">Hussel</string>
+	<string name="undo">Wis</string>
 
 	<string name="game_over">Einde Spel</string>
 	<string name="about">Bedankt</string>
@@ -21,7 +21,8 @@
 	<string name="credit_wordlist_en">Engelse woordenlijst\nOfficial Scrabble Players
 		Dictionary (OSPD)
 	</string>
-	<string name="credit_wordlist_nl">Nederlandse woordenlijst\nOpenTaal - www.opentaal.nl
+	<string name="credit_wordlist_nl">Nederlandse woordenlijst\nOpenTaal -
+		www.opentaal.nl
 	</string>
 	<string name="credit_buttons">Design Knoppen\nFolkert Jongbloed -
 		http://www.dibbus.com/2011/02/gradient-buttons-for-android/
@@ -32,7 +33,7 @@
 	<string name="round_n_over">Ronde %d Gehaald</string>
 
 
-    	<string name="next_round">Volgende Ronde</string>
+	<string name="next_round">Volgende Ronde</string>
 	<string name="main_menu">Hoofdmenu</string>
 	<string name="highscores">Topscores</string>
 	<string name="i18n_date_short">d MMM</string>
@@ -44,4 +45,5 @@
 	<string name="total_score">TOTAALSCORE: %d</string>
 	<string name="highscores_for_lang">Topscores voor %s</string>
 	<string name="lookup_header">Definities (via woorden.org)</string>
+	<string name="send_feedback">Stuur Feedback</string>
 </resources>
