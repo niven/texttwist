@@ -212,6 +212,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		}
 
 		Log.print("Starting round: " + tta.getGame().getCurrentRound());
+		scoreText.setTextColor(getResources().getColor(R.color.normal_text)); // make sure the score text doesn't remain green
 		startGame();
 	}
 
