@@ -51,5 +51,6 @@
 	<string name="bonus_timeleft">Time left bonus: +%d</string>
 	<string name="total_score">TOTAL SCORE: %d</string>
 	<string name="highscores_for_lang">Highscores for %s</string>
-	<string name="lookup_header">Look up words (launches dictionary.com)</string>
+	<string name="lookup_header">Look up words (launches anagrammer.com)</string>
+	<string name="send_feedback">Send Feedback</string>
 </resources>
