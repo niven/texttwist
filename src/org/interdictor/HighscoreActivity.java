@@ -56,9 +56,13 @@ public class HighscoreActivity extends ListActivity {
 			place.setText((position+1) + ""); // scores are not sensibly 0 based
 
 			Score score = scores.get(position);
-			String date = shortDate.format(new Date(score.timestamp * 1000)); // timestamps are epoch seconds, Dates are millis
+			
 			TextView textView = (TextView) rowView.findViewById(R.id.scoretext);
-			textView.setText(context.getResources().getString(R.string.scoretext, score.score, date));
+			textView.setText(context.getResources().getString(R.string.score_value, score.score));
+
+			String date = shortDate.format(new Date((long)score.timestamp * 1000L)); // timestamps are epoch seconds, Dates are millis, and timestamps*1000 are longs
+			TextView dateText = (TextView) rowView.findViewById(R.id.scoredate);
+			dateText.setText(date);
 
 			return rowView;
 		}
