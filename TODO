@@ -1,15 +1,14 @@
-* improve the dictionary
+* improve the dictionary and/or have definitions in-app
 Words not on dictionary.com:
 BICE (is in Wiktionary)
+
+* Minimize the resume resets the current round, should pause
+
+* Someone requested a Pause button
 
 * Time up! notification not showing
 
 * End-of-round isn't very clear, maybe disable the buttons or something
-
-* Feedback option?
-
-* BUG? Highscore dates seem to always be the current date
-- Jan 12 Fixed (Date constructor wants milliseconds)
 
 * Add Spanish? (lots of users from Phillipines)
  - but first a way to deal with accented characters
@@ -31,6 +30,6 @@ Someone wanted to 'compete against a contact', not sure how to do this.
 More game modes:
 - Square (4x4 square with letters, get as many words before time runs out (requires actual dictionary in app)
 - 7-letter twist
-
+- untimed?
 
 
