@@ -6,4 +6,7 @@
 	 <color name="normal_text">#ffffff</color>
 	 <color name="word_unguessed">#a276eb</color>
 	 <color name="word_guessed">#70c656</color>
+	 <color name="black">#000</color>
+	 <color name="blue_light">#449def</color>
+	 <color name="transparant">#00000000</color>
 </resources>
