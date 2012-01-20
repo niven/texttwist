@@ -46,4 +46,7 @@
 	<string name="highscores_for_lang">Topscores voor %s</string>
 	<string name="lookup_header">Definities (via woorden.org)</string>
 	<string name="send_feedback">Stuur Feedback</string>
+	
+	<string name="btn_pause">Pauze</string>
+	<string name="btn_resume">Doorgaan</string>
 </resources>

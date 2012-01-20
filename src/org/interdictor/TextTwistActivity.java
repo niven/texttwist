@@ -18,6 +18,7 @@ import org.interdictor.util.Settings;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,6 +40,7 @@ import android.widget.TextView;
 public class TextTwistActivity extends Activity implements OnClickListener {
 
 	Button[] letters = new Button[6];
+	Button pause, undo, shuffle, check;
 	TextView[] guesses = new TextView[6];
 	private List<String> words = new ArrayList<String>();
 	private TextView scoreText, timeText, notification, roundText; // where we
@@ -56,10 +58,19 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 	private TextTwistApplication tta;
 
 	private Thread pump; // pump ticks to our main loop
+	private AlphaAnimation alphaAnim;
 	static boolean stop = false; // clock updater
 
 	static final int SHOW_ROUNDCOMPLETED_ACTIVITY = 1;
 
+	// static initializer for the fade out animation we use for notifications
+	{
+		alphaAnim = new AlphaAnimation(1.0f, 0);
+		alphaAnim.setDuration(2 * 1000);
+		alphaAnim.setFillAfter(true);
+		alphaAnim.setFillEnabled(true);
+	}
+	
 	
 	Handler mainLoop = new Handler() {
 
@@ -104,7 +115,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 					}
 				}
 			} else { // round OVER!
-				showFeedback(getResources().getString(R.string.time_up));
+				showFeedback(getResources().getString(R.string.time_up), R.color.notification_red);
 				TextTwistActivity.stop = true;
 				timeText.setText(getResources().getString(R.string.time_left, 0, 0));
 				Log.print("ROUND OVER");
@@ -138,14 +149,16 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		timeText = (TextView) findViewById(R.id.time);
 		roundText = (TextView) findViewById(R.id.round);
 		notification = (TextView) findViewById(R.id.notify);
-
-		Button check = (Button) findViewById(R.id.check_word);
+		
+		pause = (Button) findViewById(R.id.btn_pause);
+		
+		check = (Button) findViewById(R.id.check_word);
 		check.setOnClickListener(this);
 
-		Button shuffle = (Button) findViewById(R.id.shuffle);
+		shuffle = (Button) findViewById(R.id.shuffle);
 		shuffle.setOnClickListener(this);
 
-		Button undo = (Button) findViewById(R.id.undo);
+		undo = (Button) findViewById(R.id.undo);
 		undo.setOnClickListener(this);
 
 		Intent intent = getIntent();
@@ -248,6 +261,9 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		if(state.paused) { // just don't react to letter buttons when pausing
+			return;
+		}
 		Object tag = v.getTag();
 		if (tag != null) { // its a button
 			processButton(Integer.parseInt((String) tag));
@@ -267,8 +283,16 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	protected void showFeedback(String text) {
+	/**
+	 * Show some text in the player notification area (middle top of game screen).
+	 * This text fades out
+	 * @param text
+	 * @param colorId
+	 */
+	protected void showFeedback(String text, int colorId) {
 		notification.setText(text);
+		notification.setTextColor(getResources().getColor(colorId));
+		notification.startAnimation(alphaAnim);
 	}
 
 	/**
@@ -321,10 +345,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 
 	private void guessWord() {
 		Log.print("guessWord START");
-		AlphaAnimation alphaAnim = new AlphaAnimation(1.0f, 0);
-		alphaAnim.setDuration(2 * 1000);
-		alphaAnim.setFillAfter(true);
-		alphaAnim.setFillEnabled(true);
+
 		if (state.validWords.contains(state.guess) && !state.alreadyGuessed.contains(state.guess)) {
 			int points = Settings.POINTS_PER_WORD + (Settings.POINTS_PER_LETTER * state.guess.length());
 			state.targetScore = state.score + points;
@@ -335,9 +356,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 				state.sixLetterWordGuessed = true;
 			}
 			scoreText.setTextColor(getResources().getColor(R.color.notification_green));
-			
-			notification.setText(getResources().getString(R.string.points_plus, points));
-			notification.setTextColor(getResources().getColor(R.color.notification_green));
+			showFeedback(getResources().getString(R.string.points_plus, points), R.color.notification_green);
 			updateGuessedWordDisplay(state.guess);
 
 			// go to next round if the player guessed all the words
@@ -352,13 +371,11 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		} else if (state.alreadyGuessed.contains(state.guess)) { // already
 																	// guessed
 																	// word
-			notification.setText(getResources().getString(R.string.word_already_guessed));
-			notification.setTextColor(getResources().getColor(R.color.notification_orange));
+			showFeedback(getResources().getString(R.string.word_already_guessed), R.color.notification_orange);
 		} else { // incorrect word
-			notification.setText(getResources().getString(R.string.word_incorrect));
-			notification.setTextColor(getResources().getColor(R.color.notification_red));
+			showFeedback(getResources().getString(R.string.word_incorrect), R.color.notification_red);
 		}
-		notification.startAnimation(alphaAnim);
+
 		state.guess = "";
 		// reset the letters display
 		for (int i = 0; i < 6; i++) {
@@ -389,7 +406,47 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
+	
+	public void pauseGame(View v) {
+		Log.print("Pause Game");
+		Resources resources = getResources();
+		if(state.paused) {
+			state.timeOfLastTick = System.currentTimeMillis(); // resume counting from now
+			state.paused = false;
+			setEnabled(true, letters);
+			setEnabled(true, guesses);
+			setEnabled(true, check, undo, shuffle);
+			pause.setText(resources.getString(R.string.btn_pause));
+		} else {			
+			state.paused = true;
+			setEnabled(false, letters);
+			setEnabled(false, guesses);
+			setEnabled(false, check, undo, shuffle);
+			pause.setText(resources.getString(R.string.btn_resume));
+			showFeedback(resources.getString(R.string.btn_pause), R.color.notification_green);
+		}
+	}
 
+	/**
+	 * Disable a bunch of things (could be buttons) by blurring etc
+	 * @param textViews
+	 */
+	protected void setEnabled(boolean enable, TextView... textViews) {
+		Resources resources = getResources();
+		int normalTextColor = resources.getColor( R.color.normal_text);
+		int transparantTextColor = resources.getColor( R.color.transparant);
+		for(TextView tv : textViews) {
+			tv.setEnabled(enable); // don't do the press-animation
+			if(enable) {
+				tv.setTextColor(normalTextColor);
+				tv.setShadowLayer(0f, 0f, 0f, normalTextColor);
+			} else {
+				tv.setTextColor(transparantTextColor);
+				tv.setShadowLayer(10f, 0f, 0f, normalTextColor);
+			}
+		}
+	}
+	
 	protected void startGame() {
 		// initialize our score from the previous round and make rounds shorter
 		Game game = tta.getGame();
@@ -426,7 +483,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		scoreText.setText(getResources().getString(R.string.score, state.score));
 		createGuessedWordsGrid();
 
-		state.start = System.currentTimeMillis();
+		state.timeOfLastTick = System.currentTimeMillis();
 		// start timer
 		stop = false;
 		pump = new Thread() {
@@ -434,10 +491,13 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 			@Override
 			public void run() {
 				while (!stop) {
-					long elapsed = System.currentTimeMillis() - state.start;
-					state.elapsed = elapsed;
-					long min = (state.roundLength - elapsed) / (60 * 1000);
-					long sec = ((state.roundLength - (min * 60 * 1000)) - (elapsed)) / (1000);
+					long elapsed = System.currentTimeMillis() - state.timeOfLastTick; // since last time we were running: from game start or since last pause
+					state.timeOfLastTick = System.currentTimeMillis(); // technically we're missing a few fractions of seconds here and there
+					if(!state.paused) { // this is so elegant: if the game is paused, time does not elapse ;)
+						state.elapsed += elapsed;
+					}
+					long min = (state.roundLength - state.elapsed) / (60 * 1000);
+					long sec = ((state.roundLength - (min * 60 * 1000)) - (state.elapsed)) / (1000);
 					Message msg = mainLoop.obtainMessage();
 					msg.arg1 = (int) min;
 					msg.arg2 = (int) sec;

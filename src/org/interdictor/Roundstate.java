@@ -21,7 +21,6 @@ class Roundstate {
 
 	public Thread clock;
 	long roundLength = Settings.ROUND_LENGTH;
-	long start;
 	int score = 0;
 	String guess = "";
 	boolean sixLetterWordGuessed = false;
@@ -30,9 +29,13 @@ class Roundstate {
 
 	public boolean shuffled;
 
-	protected long elapsed;
 
 	public int targetScore; // this is where we are going from score so we can animate counting up points
 
 	public boolean isUpdatingScore = false;
+
+	public boolean paused = false;
+
+	protected long elapsed;
+	public long timeOfLastTick;
 }

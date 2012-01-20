@@ -1,193 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" 
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content">
-	<RelativeLayout 
+	<RelativeLayout
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		>
-		<TextView 
+		android:layout_height="wrap_content">
+		<TextView
 			android:id="@+id/score"
 			style="@style/Top"
-			android:text="SCORE"
-			/>
+			android:text="SCORE" />
 		<TextView
 			android:id="@+id/notify"
 			style="@style/Top.Notification"
-			android:layout_centerInParent="true"
-			/>
-		<TextView 
+			android:layout_centerInParent="true" />
+		<TextView
 			android:id="@+id/round"
 			style="@style/Top"
 			android:text="ROUND"
-		 	android:layout_alignParentRight="true"
-		 	/>
+			android:layout_alignParentRight="true" />
 	</RelativeLayout>
-	
-		<TextView 
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content" 
-			android:id="@+id/time"
-			style="@style/Top" 
-			android:textSize="20sp"
-			android:paddingBottom="15dp"/>		
+
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/time"
+		style="@style/Top"
+		android:textSize="20sp"
+		android:paddingBottom="15dp" />
 
 	<LinearLayout
-		android:orientation="horizontal" 
+		android:orientation="horizontal"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:id="@+id/letter_row">
-		
-		<TextView 
+
+		<TextView
 			android:text="F"
 			android:background="@drawable/guess"
 			android:id="@+id/guess0"
 			android:visibility="invisible"
-			style="@style/ButtonText"	
-		/>
-		<TextView 
+			style="@style/ButtonText" />
+		<TextView
 			android:text="O"
 			android:background="@drawable/guess"
 			android:id="@+id/guess1"
 			android:visibility="invisible"
-			style="@style/ButtonText"	
-		/>		
-		<TextView 
+			style="@style/ButtonText" />
+		<TextView
 			android:text="O"
 			android:background="@drawable/guess"
 			android:id="@+id/guess2"
 			android:visibility="invisible"
-			style="@style/ButtonText"	
-		/>		
-		<TextView 
+			style="@style/ButtonText" />
+		<TextView
 			android:text="B"
 			android:background="@drawable/guess"
 			android:id="@+id/guess3"
 			android:visibility="invisible"
-			style="@style/ButtonText"	
-		/>		
-		<TextView 
+			style="@style/ButtonText" />
+		<TextView
 			android:text="A"
 			android:background="@drawable/guess"
 			android:id="@+id/guess4"
 			android:visibility="invisible"
-			style="@style/ButtonText"	
-		/>		
-		<TextView 
+			style="@style/ButtonText" />
+		<TextView
 			android:text="R"
 			android:background="@drawable/guess"
 			android:id="@+id/guess5"
 			android:visibility="invisible"
-			style="@style/ButtonText"	
-		/>
+			style="@style/ButtonText" />
 	</LinearLayout>
-		<View
-    android:background="@drawable/divider"
-    android:layout_width="fill_parent"
-    android:layout_height="1dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="12dp"
-     />
+	<View
+		android:background="@drawable/divider"
+		android:layout_width="fill_parent"
+		android:layout_height="1dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginBottom="12dp" />
 	<LinearLayout
-		android:orientation="horizontal" 
+		android:orientation="horizontal"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:id="@+id/letters">
-		<Button 
+		<Button
 			android:text="F"
 			android:background="@drawable/letter"
 			android:id="@+id/letter0"
 			android:tag="0"
-			style="@style/ButtonText"	
-		/>
-		<Button 
+			style="@style/ButtonText" />
+		<Button
 			android:text="O"
 			android:background="@drawable/letter"
 			android:id="@+id/letter1"
 			android:tag="1"
-			style="@style/ButtonText"	
-		/>		
-		<Button 
+			style="@style/ButtonText" />
+		<Button
 			android:text="O"
 			android:background="@drawable/letter"
 			android:id="@+id/letter2"
 			android:tag="2"
-			style="@style/ButtonText"	
-		/>		
-		<Button 
+			style="@style/ButtonText" />
+		<Button
 			android:text="B"
 			android:background="@drawable/letter"
 			android:id="@+id/letter3"
 			android:tag="3"
-			style="@style/ButtonText"	
-		/>		
-		<Button 
+			style="@style/ButtonText" />
+		<Button
 			android:text="A"
 			android:background="@drawable/letter"
 			android:id="@+id/letter4"
 			android:tag="4"
-			style="@style/ButtonText"	
-		/>		
-		<Button 
+			style="@style/ButtonText" />
+		<Button
 			android:text="R"
 			android:background="@drawable/letter"
 			android:id="@+id/letter5"
 			android:tag="5"
-			style="@style/ButtonText"	
-		/>
+			style="@style/ButtonText" />
 	</LinearLayout>
-	
 
-	
-		<Button 
-		    android:layout_height="wrap_content"
-     		android:layout_width="fill_parent"
-			android:text="@string/check_word"
-			android:background="@drawable/letter"
-			android:id="@+id/check_word"
-			style="@style/ButtonText"	
-			android:layout_marginTop="16dp"
-			/>
-			<LinearLayout 
-					android:orientation="horizontal" 
+
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:text="@string/check_word"
+		android:background="@drawable/letter"
+		android:id="@+id/check_word"
+		style="@style/ButtonText"
+		android:layout_marginTop="16dp" />
+		
+		
+	<LinearLayout
+		android:orientation="horizontal"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-					android:layout_marginTop="16dp"
-			>
-		<Button 
-		    android:layout_height="wrap_content"
-     		android:layout_width="fill_parent"
+		android:layout_marginTop="16dp">
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
 			android:text="@string/undo"
 			android:background="@drawable/letter"
 			android:id="@+id/undo"
-			style="@style/ButtonText"	
+			style="@style/ButtonText"
 			android:layout_marginTop="16dp"
-			android:textSize="16dp"
-			/>		
-					<Button 
-		    android:layout_height="wrap_content"
-     		android:layout_width="fill_parent"
+			android:textSize="16dp" />
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
 			android:text="@string/shuffle"
 			android:background="@drawable/letter"
 			android:id="@+id/shuffle"
-			style="@style/ButtonText"	
+			style="@style/ButtonText"
 			android:layout_marginTop="16dp"
-			android:textSize="16dp"
-			/>			
-			</LinearLayout>
-	<View android:layout_width="0px" android:layout_weight="1" android:layout_height="0px" android:visibility="invisible"/>		
-			
-	<TableLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="*"
-    android:id="@+id/grid"
-    android:layout_gravity="center_horizontal|bottom">
-    
+			android:textSize="16dp" />
+		<Button
+			android:id="@+id/btn_pause"
+			android:text="@string/btn_pause"
+			android:onClick="pauseGame"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:background="@drawable/letter"
+			style="@style/ButtonText"
+			android:layout_marginTop="16dp"
+			android:textSize="16dp" />
+	</LinearLayout>
+	<View
+		android:layout_width="0px"
+		android:layout_weight="1"
+		android:layout_height="0px"
+		android:visibility="invisible" />
+
+	<TableLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:stretchColumns="*"
+		android:id="@+id/grid"
+		android:layout_gravity="center_horizontal|bottom">
+
 	</TableLayout>
-			
+
 </LinearLayout>
