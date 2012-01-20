@@ -1,4 +1,18 @@
-* improve the dictionary
+* improve the dictionary and/or have definitions in-app
+Words not on dictionary.com:
+BICE (is in Wiktionary)
+
+* Minimize the resume resets the current round, should pause
+
+* Someone requested a Pause button
+- Add the pasue button and blur all the letters should be nice, apparently 1-year olds are distracting
+
+* someone requested Hint button
+- no idea how
+
+* Someone requested Difficulty Mode
+- Based on round time?
+- Difficulty of 6-letter word?
 
 * Time up! notification not showing
 
@@ -24,6 +38,6 @@ Someone wanted to 'compete against a contact', not sure how to do this.
 More game modes:
 - Square (4x4 square with letters, get as many words before time runs out (requires actual dictionary in app)
 - 7-letter twist
-
+- untimed?
 
 
