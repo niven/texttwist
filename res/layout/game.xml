@@ -73,6 +73,12 @@
 			android:id="@+id/guess5"
 			android:visibility="invisible"
 			style="@style/ButtonText" />
+		<Button
+			android:id="@+id/btn_undo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/button_undo"
+			android:onClick="undo" />
 	</LinearLayout>
 	<View
 		android:background="@drawable/divider"
@@ -122,6 +128,12 @@
 			android:id="@+id/letter5"
 			android:tag="5"
 			style="@style/ButtonText" />
+		<Button
+			android:id="@+id/btn_shuffle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/button_shuffle"
+			android:onClick="shuffle" />
 	</LinearLayout>
 
 
@@ -134,36 +146,32 @@
 		android:id="@+id/check_word"
 		style="@style/ButtonText"
 		android:layout_marginTop="16dp" />
-		
-		
+
+
 	<LinearLayout
 		android:orientation="horizontal"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:layout_marginTop="16dp">
-		<Button
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent"
-			android:text="@string/undo"
-			android:background="@drawable/letter"
-			android:id="@+id/undo"
-			style="@style/ButtonText"
-			android:layout_marginTop="16dp"
-			android:textSize="16dp" />
-		<Button
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent"
-			android:text="@string/shuffle"
-			android:background="@drawable/letter"
-			android:id="@+id/shuffle"
-			style="@style/ButtonText"
-			android:layout_marginTop="16dp"
-			android:textSize="16dp" />
+		<!-- <Button android:layout_height="wrap_content" android:layout_width="fill_parent" 
+			android:text="@string/undo" android:background="@drawable/letter" android:id="@+id/undo" 
+			style="@style/ButtonText" android:layout_marginTop="16dp" android:textSize="16dp" 
+			/> <Button android:layout_height="wrap_content" android:layout_width="fill_parent" 
+			android:text="@string/shuffle" android:background="@drawable/letter" android:id="@+id/shuffle" 
+			style="@style/ButtonText" android:layout_marginTop="16dp" android:textSize="16dp" 
+			/> -->
 		<Button
 			android:id="@+id/btn_pause"
-			android:text="@string/btn_pause"
+			android:background="@drawable/pause"
 			android:onClick="pauseGame"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_marginTop="16dp" />
+		<Button
+			android:id="@+id/btn_hint"
+			android:text="@string/hint"
+			android:onClick="hint"
 			android:layout_width="wrap_content"
 			android:layout_height="fill_parent"
 			android:background="@drawable/letter"
@@ -171,6 +179,7 @@
 			android:layout_marginTop="16dp"
 			android:textSize="16dp" />
 	</LinearLayout>
+
 	<View
 		android:layout_width="0px"
 		android:layout_weight="1"

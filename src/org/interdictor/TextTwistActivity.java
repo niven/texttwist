@@ -15,6 +15,8 @@ import java.util.Random;
 
 import org.interdictor.util.Log;
 import org.interdictor.util.Settings;
+import org.interdictor.util.Utils;
+import org.interdictor.util.Utils.Filter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -40,7 +42,7 @@ import android.widget.TextView;
 public class TextTwistActivity extends Activity implements OnClickListener {
 
 	Button[] letters = new Button[6];
-	Button pause, undo, shuffle, check;
+	Button pause, undo, shuffle, check, hint;
 	TextView[] guesses = new TextView[6];
 	private List<String> words = new ArrayList<String>();
 	private TextView scoreText, timeText, notification, roundText; // where we
@@ -151,15 +153,13 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		notification = (TextView) findViewById(R.id.notify);
 		
 		pause = (Button) findViewById(R.id.btn_pause);
+		hint = (Button) findViewById(R.id.btn_hint);
+		shuffle = (Button) findViewById(R.id.btn_shuffle);
+		undo = (Button) findViewById(R.id.btn_undo);
 		
 		check = (Button) findViewById(R.id.check_word);
 		check.setOnClickListener(this);
 
-		shuffle = (Button) findViewById(R.id.shuffle);
-		shuffle.setOnClickListener(this);
-
-		undo = (Button) findViewById(R.id.undo);
-		undo.setOnClickListener(this);
 
 		Intent intent = getIntent();
 		locale = new Locale(intent.getStringExtra("locale_string"));
@@ -274,12 +274,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 
 			guessWord();
 			break;
-		case R.id.undo:
-			undo();
-			break;
-		case R.id.shuffle:
-			shuffle();
-			break;
+
 		}
 	}
 
@@ -298,7 +293,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 	/**
 	 * Shuffle the list of input letters (and clear the current guess)
 	 */
-	private void shuffle() {
+	public void shuffle(View v) {
 
 		state.shuffled = true; // no bonus :)
 		state.guess = ""; // reset guess
@@ -327,7 +322,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 	/**
 	 * Undo last letter pressed
 	 */
-	private void undo() {
+	public void undo(View v) {
 		if (state.letterSequence.size() > 0) { // only if we pressed any
 												// something
 			Integer letterIdx = state.letterSequence.remove(0);
@@ -407,6 +402,36 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	/**
+	 * Show a hint
+	 * @param v
+	 */
+	public void hint(View v) {
+		int hintCost = (state.hints+1) * Settings.HINT_POINT_COST;
+		if(state.targetScore > hintCost) {
+			state.targetScore -= hintCost;
+			List<String> sixLetterWords = Utils.grep(new Filter<String>(){
+
+				@Override
+				public boolean passes(String item) {
+					return item.length() == 6;
+				}}, state.validWords);
+			for(String w : sixLetterWords) {
+				LinearLayout word = guessedWordsDisplay.get(w);
+				// number of hints is also index of letter we're showing
+				char[] letters = w.toCharArray();
+				TextView t = (TextView) word.getChildAt(state.hints);
+				t.setText("" + letters[state.hints]);
+				t.setBackgroundDrawable(getResources().getDrawable(R.drawable.letter_small_hint));
+				t.setTextColor(getResources().getColor(R.color.black));
+			}
+			state.hints++;
+			hint.setText(getResources().getString(R.string.hint, Settings.HINT_POINT_COST * (state.hints+1)));
+		} else {
+			showFeedback(getResources().getString(R.string.not_enough_points), R.color.notification_red);
+		}
+	}
+	
 	public void pauseGame(View v) {
 		Log.print("Pause Game");
 		Resources resources = getResources();
@@ -415,14 +440,16 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 			state.paused = false;
 			setEnabled(true, letters);
 			setEnabled(true, guesses);
-			setEnabled(true, check, undo, shuffle);
-			pause.setText(resources.getString(R.string.btn_pause));
+			setEnabled(true, check, undo, shuffle, hint);
+//			pause.setText(resources.getString(R.string.btn_pause));
+			pause.setBackgroundDrawable(resources.getDrawable(R.drawable.pause));
 		} else {			
 			state.paused = true;
 			setEnabled(false, letters);
 			setEnabled(false, guesses);
-			setEnabled(false, check, undo, shuffle);
-			pause.setText(resources.getString(R.string.btn_resume));
+			setEnabled(false, check, undo, shuffle, hint);
+//			pause.setText(resources.getString(R.string.btn_resume));
+			pause.setBackgroundDrawable(resources.getDrawable(R.drawable.play));
 			showFeedback(resources.getString(R.string.btn_pause), R.color.notification_green);
 		}
 	}
@@ -482,6 +509,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		guessedWordsDisplay.clear();
 		scoreText.setText(getResources().getString(R.string.score, state.score));
 		createGuessedWordsGrid();
+		hint.setText(getResources().getString(R.string.hint, Settings.HINT_POINT_COST ));
 
 		state.timeOfLastTick = System.currentTimeMillis();
 		// start timer

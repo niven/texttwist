@@ -38,4 +38,6 @@ class Roundstate {
 
 	protected long elapsed;
 	public long timeOfLastTick;
+	
+	int hints; // number of hints used
 }

@@ -55,4 +55,6 @@
 	<string name="send_feedback">Send Feedback</string>
 	<string name="btn_pause">Pause</string>
 	<string name="btn_resume">Resume</string>
+	<string name="hint">Hint (-%,d)</string>
+	<string name="not_enough_points">Not enough points</string>
 </resources>

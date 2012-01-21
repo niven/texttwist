@@ -49,4 +49,6 @@
 	
 	<string name="btn_pause">Pauze</string>
 	<string name="btn_resume">Doorgaan</string>
+	<string name="hint">Hint (-%,d)</string>
+	<string name="not_enough_points">Niet genoeg punten</string>
 </resources>
