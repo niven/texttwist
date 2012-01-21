@@ -18,6 +18,8 @@ public class Settings {
 	public static final Map<String, String> lookupURLs = new HashMap<String, String>();
 	public static final long TICK = 50; // milliseconds per event loop update
 
+	public static final int HINT_POINT_COST = 250;
+
 	static {
 //		lookupURLs.put("en", "http://m.dictionary.com/d/?q=%s");
 //		lookupURLs.put("en", "http://en.wiktionary.org/wiki/%s");
