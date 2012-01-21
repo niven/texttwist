@@ -13,6 +13,10 @@ public class Utils {
 		List<T> map(T item);
 	}
 
+	public interface Filter<T> {
+		boolean passes(T item);
+	}
+
 	// tests
 	public static void main(String[] args) {
 
@@ -87,6 +91,16 @@ public class Utils {
 			List<T> result = mapping.map(t);
 			if (result != null) {
 				out.addAll(result);
+			}
+		}
+		return out;
+	}
+
+	public static <T> List<T> grep(Filter<T> filter, List<T> in) {
+		List<T> out = new ArrayList<T>();
+		for (T t : in) {
+			if (filter.passes(t)) {
+				out.add(t);
 			}
 		}
 		return out;
