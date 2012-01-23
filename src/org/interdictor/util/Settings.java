@@ -25,6 +25,7 @@ public class Settings {
 //		lookupURLs.put("en", "http://en.wiktionary.org/wiki/%s");
 		lookupURLs.put("en", "http://www.anagrammer.com/scrabble/%s");
 		lookupURLs.put("nl", "http://www.woorden.org/index.php?woord=%s");
+		lookupURLs.put("es", "http://buscon.rae.es/draeI/SrvltGUIBusUsual?LEMA=%s");
 	}
 
 }

@@ -1,5 +1,7 @@
 package org.interdictor;
 
+import java.util.Locale;
+
 import org.interdictor.util.Database;
 import org.interdictor.util.Log;
 import org.interdictor.util.Settings;
@@ -86,7 +88,11 @@ public class RoundCompletedActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				String item = (String) lookup.getAdapter().getItem(position);
-				String target = String.format(Settings.lookupURLs.get(tta.getLocale().getLanguage()), item);
+				Locale locale = tta.getLocale();
+				if(locale.equals(new Locale("es"))) {
+					item = item.toLowerCase(locale);
+				}
+				String target = String.format(Settings.lookupURLs.get(locale.getLanguage()), item);
 				Log.print("Clicked on " + item + "/ " + target);
 				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(target));
 				startActivity(browserIntent);
