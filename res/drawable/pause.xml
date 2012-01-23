@@ -13,8 +13,6 @@
 		</shape>
 	</item>
 	<item>
-		<bitmap
-			android:src="@android:drawable/ic_media_pause"
-			android:gravity="center" />
+		<bitmap android:src="@android:drawable/ic_media_pause" />
 	</item>
 </layer-list>
