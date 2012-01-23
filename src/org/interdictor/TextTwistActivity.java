@@ -421,7 +421,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 	 */
 	public void hint(View v) {
 		int hintCost = (state.hints+1) * Settings.HINT_POINT_COST;
-		if(state.targetScore > hintCost) {
+		if(state.targetScore > hintCost || Settings.DEBUG) {
 			state.targetScore -= hintCost;
 			List<String> sixLetterWords = Utils.grep(new Filter<String>(){
 
@@ -442,6 +442,9 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 			hint.setText(getResources().getString(R.string.hint, Settings.HINT_POINT_COST * (state.hints+1)));
 		} else {
 			showFeedback(getResources().getString(R.string.not_enough_points), R.color.notification_red);
+		}
+		if(state.hints == 6) { // revealed the 6 letter word by now
+			hint.setVisibility(View.GONE);
 		}
 	}
 	
@@ -523,7 +526,7 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 		scoreText.setText(getResources().getString(R.string.score, state.score));
 		createGuessedWordsGrid();
 		hint.setText(getResources().getString(R.string.hint, Settings.HINT_POINT_COST ));
-
+		hint.setVisibility(View.VISIBLE);
 		state.timeOfLastTick = System.currentTimeMillis();
 		// start timer
 		stop = false;
