@@ -19,7 +19,7 @@ import android.widget.Spinner;
 public class MainMenuActivity extends Activity implements OnClickListener, OnItemSelectedListener {
 
 	// supported
-	Locale[] locales = new Locale[] { Locale.ENGLISH, new Locale("nl") };
+	Locale[] locales = new Locale[] { Locale.ENGLISH, new Locale("nl"), new Locale("es") };
 	private TextTwistApplication tta;
 
 	@Override

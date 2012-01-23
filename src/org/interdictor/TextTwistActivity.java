@@ -3,6 +3,7 @@ package org.interdictor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,6 +22,7 @@ import org.interdictor.util.Utils.Filter;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -166,12 +168,23 @@ public class TextTwistActivity extends Activity implements OnClickListener {
 
 		// TODO: do this in a thread and display a spinner
 		int fileId = R.raw.twister_words_en;
-		if (locale.equals(new Locale("nl"))) {
+		if( locale.equals(new Locale("es"))) {
+			fileId = R.raw.twister_words_es;
+		} else if (locale.equals(new Locale("nl"))) {
 			fileId = R.raw.twister_words_nl;
 		} else {
 			fileId = R.raw.twister_words_en;
 		}
-		BufferedReader data = new BufferedReader(new InputStreamReader(getResources().openRawResource(fileId)));
+		BufferedReader data = null;
+		try {
+			data = new BufferedReader(new InputStreamReader(getResources().openRawResource(fileId),"UTF16"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String line;
 		try {
 			while ((line = data.readLine()) != null) {

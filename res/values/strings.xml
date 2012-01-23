@@ -39,6 +39,7 @@
 	<string-array name="language_array">
 		<item>English</item>
 		<item>Nederlands</item>
+		<item>Castellano</item>
 	</string-array>
 	<string name="next_round">Next Round</string>
 	<string name="main_menu">Main Menu</string>
