@@ -2,6 +2,11 @@
 Words not on dictionary.com:
 BICE (is in Wiktionary)
 
+* Change generated word list:
+we don't need to store the six letter word as alphabet-sorted letter string,
+and we can replace each word with a pointer to a dictionary
+This also makes 7/8 letter words cheaper to store
+
 * Make already-guessed words larger/better contrast for low-vision users
 
 * Translate all app text into spanish
